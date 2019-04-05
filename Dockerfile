@@ -14,9 +14,9 @@ ARG JRS_VERSION=7.1.1
 
 RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/jasperserver_${JRS_VERSION}_bin.zip" -O /tmp/jasperserver.zip --no-verbose
 
-mkdir -p /usr/src/jasperreports-server/
-mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/lib/
-mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/
+RUN mkdir -p /usr/src/jasperreports-server/
+RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/lib/
+RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/
 
 RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/license/jasperserver.license" -O /usr/src/jasperreports-server/jasperserver.license --no-verbose
 
