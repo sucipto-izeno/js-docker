@@ -223,7 +223,8 @@ ${JRS_CUSTOMIZATION:-/usr/local/share/jasperreports-pro/customization}
 config_sso(){
  #copy WEB-INF files
  JRS_SSO_WEB_INF=/usr/src/jasperreports-server/WEB-INF
- JRS_SSO_WEB_INF_FILES=`find $JRS_SSO_WEB_INF -name "*.jar" -exec readlink -f {} | sort -V`
+ JRS_SSO_WEB_INF_FILES=`find $JRS_SSO_WEB_INF -name "*.jar" \
+   -exec readlink -f {} \; | sort -V`
 	for web_files in $JRS_SSO_WEB_INF_FILES; do
 	if [[ -f "$web_files" ]]; then
     cp $web_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/
@@ -234,7 +235,8 @@ config_sso(){
 config_sso_lib(){
  #copy WEB-INF files
  JRS_SSO_WEB_INF_LIB=/usr/src/jasperreports-server/WEB-INF/lib
- JRS_SSO_WEB_INF_LIB_FILES=`find $JRS_SSO_WEB_INF_LIB -name "*.jar" -exec readlink -f {} | sort -V`
+ JRS_SSO_WEB_INF_LIB_FILES=`find $JRS_SSO_WEB_INF_LIB -name "*.jar" \
+ -exec readlink -f {} \; | sort -V`
 	for lib_files in $JRS_SSO_WEB_INF_LIB; do
 	if [[ -f "$lib_files" ]]; then
     cp $lib_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/lib/
