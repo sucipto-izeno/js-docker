@@ -18,9 +18,9 @@ set -e
 
 setup_jasperserver() {
   # If environment is not set, uses default values for postgres
-  DB_USER=${DB_USER:-postgres}
-  DB_PASSWORD=${DB_PASSWORD:-postgres}
-  DB_HOST=${DB_HOST:-postgres}
+  DB_USER=${DB_USER:-jasperserver}
+  DB_PASSWORD=${DB_PASSWORD:-jasperserver}
+  DB_HOST=${DB_HOST:-10.21.65.3}
   DB_PORT=${DB_PORT:-5432}
   DB_NAME=${DB_NAME:-jasperserver}
 
@@ -108,7 +108,11 @@ run_jasperserver() {
   setup_jasperserver deploy-jdbc-jar
 
   config_license
-
+  
+  config_sso
+  
+  config_sso_lib
+  
   # Set up phantomjs.
   config_phantomjs
 
@@ -212,6 +216,28 @@ ${JRS_CUSTOMIZATION:-/usr/local/share/jasperreports-pro/customization}
     if [[ -f "$customization" ]]; then
       unzip -o -q "$customization" \
         -d $CATALINA_HOME/webapps/jasperserver-pro/
+    fi
+  done
+}
+
+config_sso(){
+ #copy WEB-INF files
+ JRS_SSO_WEB_INF=/usr/local/share/jasperreports-pro/WEB-INF
+ JRS_SSO_WEB_INF_FILES=`find $JRS_SSO_WEB_INF -name "*.jar" -exec readlink -f {} ; | sort -V`
+	for web_files in $JRS_SSO_WEB_INF_FILES; do
+	if [[ -f "$web_files" ]]; then
+    cp $web_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/
+    fi
+  done
+}
+
+config_sso_lib(){
+ #copy WEB-INF files
+ JRS_SSO_WEB_INF_LIB=/usr/local/share/jasperreports-pro/WEB-INF/lib
+ JRS_SSO_WEB_INF_LIB_FILES=`find $JRS_SSO_WEB_INF_LIB -name "*.jar" -exec readlink -f {} ; | sort -V`
+	for lib_files in $JRS_SSO_WEB_INF_LIB; do
+	if [[ -f "$lib_files" ]]; then
+    cp $lib_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/lib/
     fi
   done
 }
