@@ -43,6 +43,7 @@ COPY resources/jasperreports-server*zip /tmp/jasperserver.zip
 COPY resources/WEB-INF/lib/*.jar /usr/local/share/jasperreports-pro/WEB-INF/lib/
 COPY resources/WEB-INF/applicationContext-externalAuth-Keycloak.xml	 /usr/local/share/jasperreports-pro/WEB-INF/
 COPY resources/WEB-INF/slave.json	 /usr/local/share/jasperreports-pro/WEB-INF/
+COPY resources/jasperserver.license /usr/src/jasperreports-server/jasperserver.license 
 
 RUN apt-get update && apt-get install -y postgresql-client unzip xmlstarlet && \
     rm -rf /var/lib/apt/lists/* && \

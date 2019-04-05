@@ -15,6 +15,8 @@ gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/WEB-INF/lib/keycloak-adapte
 gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/WEB-INF/lib/keycloak-common-2.5.5.Final.jar	 resources/WEB-INF/lib/
 gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/WEB-INF/lib/keycloak-core-2.5.5.Final.jar	 resources/WEB-INF/lib/
 gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar	 resources/WEB-INF/lib/
+gsutil cp gs://gke-shared/jasperreport/license/jasperserver.license resources/
+
 
 echo "Running Docker Build"
 
