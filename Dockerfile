@@ -3,10 +3,10 @@
 # in the license file that is distributed with this file.
 # version: 6.3.0-v1.0.4
 
-ARG JRS_VERSION=7.1.1
+
 
 FROM tomcat:8.0-jre8
-
+ARG JRS_VERSION=7.1.1
 # Copy jasperreports-server-<ver> zip file from resources dir.
 # Build will fail if file not present.
 
