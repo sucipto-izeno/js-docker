@@ -12,34 +12,37 @@ ARG JRS_VERSION=7.1.1
 
 #DOWNLOAD JASPERSERVER BIN ZIP from gcs
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/jasperserver_${JRS_VERSION}_bin.zip" -O resources/jasperreports-server.zip --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/jasperserver_${JRS_VERSION}_bin.zip" -O resources/jasperreports-server.zip --no-verbose
 
 RUN mkdir -p /usr/src/jasperreports-server/
 RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/lib/
 RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/license/jasperserver.license" -O /usr/src/jasperreports-server/jasperserver.license --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/license/jasperserver.license" -O /usr/src/jasperreports-server/jasperserver.license --no-verbose
 
 #copy the WEB-INF extra files
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/applicationContext-externalAuth-Keycloak.xml" -O /usr/local/share/jasperreports-pro/WEB-INF/applicationContext-externalAuth-Keycloak.xml --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/applicationContext-externalAuth-Keycloak.xml" -O /usr/local/share/jasperreports-pro/WEB-INF/applicationContext-externalAuth-Keycloak.xml --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/slave.json" -O /usr/local/share/jasperreports-pro/WEB-INF/slave.json --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/slave.json" -O /usr/local/share/jasperreports-pro/WEB-INF/slave.json --no-verbose
 
 
 #copy the WEB-INF/LIB
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/jasperserver-keycloak-adapter-0.0.3-SNAPSHOT.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/jasperserver-keycloak-adapter-0.0.3-SNAPSHOT.jar --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/jasperserver-keycloak-adapter-0.0.3-SNAPSHOT.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/jasperserver-keycloak-adapter-0.0.3-SNAPSHOT.jar --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-adapter-core-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-adapter-core-2.5.5.Final.jar --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-adapter-core-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-adapter-core-2.5.5.Final.jar --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-adapter-spi-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-adapter-spi-2.5.5.Final.jar --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-adapter-spi-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-adapter-spi-2.5.5.Final.jar --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-common-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-common-2.5.5.Final.jar --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-common-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-common-2.5.5.Final.jar --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-core-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-core-2.5.5.Final.jar --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-core-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-core-2.5.5.Final.jar --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar --no-verbose
+#RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar --no-verbose
 
 COPY resources/jasperreports-server*zip /tmp/jasperserver.zip
+COPY resources/WEB-INF/lib/*.jar /usr/local/share/jasperreports-pro/WEB-INF/lib/
+COPY resources/WEB-INF/applicationContext-externalAuth-Keycloak.xml	 /usr/local/share/jasperreports-pro/WEB-INF/
+COPY resources/WEB-INF/slave.json	 /usr/local/share/jasperreports-pro/WEB-INF/
 
 RUN apt-get update && apt-get install -y postgresql-client unzip xmlstarlet && \
     rm -rf /var/lib/apt/lists/* && \
