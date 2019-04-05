@@ -12,7 +12,7 @@ ARG JRS_VERSION=7.1.1
 
 #DOWNLOAD JASPERSERVER BIN ZIP from gcs
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/jasperserver_${JRS_VERSION}_bin.zip" -O /tmp/jasperserver.zip --no-verbose
+RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/jasperserver_${JRS_VERSION}_bin.zip" -O resources/jasperreports-server.zip --no-verbose
 
 RUN mkdir -p /usr/src/jasperreports-server/
 RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/lib/
@@ -39,7 +39,7 @@ RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION
 
 RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar --no-verbose
 
-#COPY resources/jasperreports-server*zip /tmp/jasperserver.zip
+COPY resources/jasperreports-server*zip /tmp/jasperserver.zip
 
 RUN apt-get update && apt-get install -y postgresql-client unzip xmlstarlet && \
     rm -rf /var/lib/apt/lists/* && \
