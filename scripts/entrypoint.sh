@@ -66,6 +66,9 @@ _EOL_
         -DwebAppName=jasperserver-pro
     fi
   done
+  config_sso
+  
+  config_sso_lib
 }
 
 run_jasperserver() {
@@ -108,11 +111,7 @@ run_jasperserver() {
   setup_jasperserver deploy-jdbc-jar
 
   config_license
-  
-  config_sso
-  
-  config_sso_lib
-  
+      
   # Set up phantomjs.
   config_phantomjs
 
@@ -223,7 +222,7 @@ ${JRS_CUSTOMIZATION:-/usr/local/share/jasperreports-pro/customization}
 config_sso(){
  #copy WEB-INF files
  JRS_SSO_WEB_INF=/usr/src/jasperreports-server/WEB-INF
- JRS_SSO_WEB_INF_FILES=`find $JRS_SSO_WEB_INF -name "*.jar" \
+ JRS_SSO_WEB_INF_FILES=`find $JRS_SSO_WEB_INF -name "*.*" \
    -exec readlink -f {} \; | sort -V`
 	for web_files in $JRS_SSO_WEB_INF_FILES; do
 	if [[ -f "$web_files" ]]; then
