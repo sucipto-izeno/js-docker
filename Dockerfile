@@ -14,10 +14,10 @@ ARG JRS_VERSION=7.1.1
 
 #RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/jasperserver_${JRS_VERSION}_bin.zip" -O resources/jasperreports-server.zip --no-verbose
 
-RUN mkdir -p /usr/src/jasperreports-server/
-RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/lib/
-RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/
-RUN mkdir -p /usr/src/jasperreports-server/buildomatic/
+#RUN mkdir -p /usr/src/jasperreports-server/
+#RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/lib/
+#RUN mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/
+#RUN mkdir -p /usr/src/jasperreports-server/buildomatic/
 
 #RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/license/jasperserver.license" -O /usr/src/jasperreports-server/jasperserver.license --no-verbose
 #copy the WEB-INF extra files
@@ -32,10 +32,7 @@ RUN mkdir -p /usr/src/jasperreports-server/buildomatic/
 #RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar" -O /usr/local/share/jasperreports-pro/WEB-INF/lib/keycloak-spring-security-adapter-2.5.5.Final.jar --no-verbose
 
 COPY resources/jasperreports-server*zip /tmp/jasperserver.zip
-COPY resources/WEB-INF/lib/*.jar /usr/local/share/jasperreports-pro/WEB-INF/lib/
-COPY resources/WEB-INF/applicationContext-externalAuth-Keycloak.xml	 /usr/local/share/jasperreports-pro/WEB-INF/
-COPY resources/WEB-INF/slave.json	 /usr/local/share/jasperreports-pro/WEB-INF/
-COPY resources/jasperserver.license /usr/src/jasperreports-server/jasperserver.license 
+
 
 RUN apt-get update && apt-get install -y postgresql-client unzip xmlstarlet && \
     rm -rf /var/lib/apt/lists/* && \
@@ -43,6 +40,11 @@ RUN apt-get update && apt-get install -y postgresql-client unzip xmlstarlet && \
     mv /usr/src/jasperreports-server-* /usr/src/jasperreports-server && \
     mkdir -p /usr/local/share/jasperreports-pro/license && \
     rm -rf /tmp/*
+	
+COPY resources/WEB-INF/lib/*.jar /usr/src/jasperreports-server/WEB-INF/lib/
+COPY resources/WEB-INF/applicationContext-externalAuth-Keycloak.xml /usr/src/jasperreports-server/WEB-INF/
+COPY resources/WEB-INF/slave.json	 /usr/src/jasperreports-server/WEB-INF/
+COPY resources/jasperserver.license /usr/local/share/jasperreports-pro/license/jasperserver.license 
 
 # Extract phantomjs, move to /usr/local/share/phantomjs, link to /usr/local/bin.
 # Comment out if phantomjs not required.
