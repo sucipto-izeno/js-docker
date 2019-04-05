@@ -14,7 +14,11 @@ ARG JRS_VERSION=7.1.1
 
 RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/jasperserver_${JRS_VERSION}_bin.zip" -O /tmp/jasperserver.zip --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/license/jasperserver.license" -O /usr/local/share/jasperreports-pro/jasperreports-server/jasperserver.license --no-verbose
+mkdir -p /usr/src/jasperreports-server/
+mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/lib/
+mkdir -p /usr/local/share/jasperreports-pro/WEB-INF/
+
+RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/license/jasperserver.license" -O /usr/src/jasperreports-server/jasperserver.license --no-verbose
 
 #copy the WEB-INF extra files
 RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/applicationContext-externalAuth-Keycloak.xml" -O /usr/local/share/jasperreports-pro/WEB-INF/applicationContext-externalAuth-Keycloak.xml --no-verbose
