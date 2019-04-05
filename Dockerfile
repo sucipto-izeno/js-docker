@@ -23,7 +23,7 @@ RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/license/jaspe
 #copy the WEB-INF extra files
 RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/applicationContext-externalAuth-Keycloak.xml" -O /usr/local/share/jasperreports-pro/WEB-INF/applicationContext-externalAuth-Keycloak.xml --no-verbose
 
-RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/slave.json" -O /usr/src/WEB-INF/slave.json --no-verbose
+RUN wget "https://storage.cloud.google.com/gke-shared/jasperreport/${JRS_VERSION}/WEB-INF/slave.json" -O /usr/local/share/jasperreports-pro/WEB-INF/slave.json --no-verbose
 
 
 #copy the WEB-INF/LIB
