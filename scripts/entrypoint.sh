@@ -236,7 +236,7 @@ config_sso_lib(){
  JRS_SSO_WEB_INF_LIB=/usr/src/jasperreports-server/WEB-INF/lib
  JRS_SSO_WEB_INF_LIB_FILES=`find $JRS_SSO_WEB_INF_LIB -name "*.jar" \
  -exec readlink -f {} \; | sort -V`
-	for lib_files in $JRS_SSO_WEB_INF_LIB; do
+	for lib_files in $JRS_SSO_WEB_INF_LIB_FILES; do
 	if [[ -f "$lib_files" ]]; then
     cp $lib_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/lib/
     fi
