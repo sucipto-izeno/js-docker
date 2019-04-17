@@ -243,6 +243,18 @@ config_sso_lib(){
   done
 }
 
+config_sso_jsp(){
+ #copy WEB-INF files
+ JRS_SSO_WEB_INF_JSP=/usr/src/jasperreports-server/WEB-INF/jsp/modules/
+ JRS_SSO_WEB_INF_JSP_FILES=`find $JRS_SSO_WEB_INF_JSP -name "*.jsp" \
+ -exec readlink -f {} \; | sort -V`
+	for lib_files in $JRS_SSO_WEB_INF_JSP_FILES; do
+	if [[ -f "$lib_files" ]]; then
+    cp $lib_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/jsp/modules/
+    fi
+  done
+}
+
 case "$1" in
   run)
     shift 1
