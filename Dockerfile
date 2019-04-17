@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y postgresql-client unzip xmlstarlet && \
     rm -rf /tmp/*
 	
 COPY resources/WEB-INF/lib/*.jar /usr/src/jasperreports-server/WEB-INF/lib/
-COPY resources/WEB-INF/applicationContext-externalAuth-Keycloak.xml /usr/src/jasperreports-server/WEB-INF/
+COPY resources/WEB-INF/applicationContext-externalAuth-oAuth.xml /usr/src/jasperreports-server/WEB-INF/
 COPY resources/WEB-INF/jsp/modules/commonJSTLScripts.jsp	 /usr/src/jasperreports-server/WEB-INF/jsp/modules/
 COPY resources/jasperserver.license /usr/local/share/jasperreports-pro/license/jasperserver.license 
 
