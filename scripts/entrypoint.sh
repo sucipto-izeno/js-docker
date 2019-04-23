@@ -69,6 +69,8 @@ _EOL_
   config_sso
   
   config_sso_lib
+  
+  config_sso_jsp
 }
 
 run_jasperserver() {
