@@ -250,7 +250,7 @@ config_sso_jsp(){
  -exec readlink -f {} \; | sort -V`
 	for lib_files in $JRS_SSO_WEB_INF_JSP_FILES; do
 	if [[ -f "$lib_files" ]]; then
-    cp $lib_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/jsp/modules/
+    cp -f $lib_files $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/jsp/modules/
     fi
   done
 }
