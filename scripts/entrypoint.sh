@@ -18,11 +18,18 @@ set -e
 
 setup_jasperserver() {
   # If environment is not set, uses default values for postgres
+  #DB_USER=${DB_USER:-jasperserver}
+  #DB_PASSWORD=${DB_PASSWORD:-jasperserver}
+  #DB_HOST=${DB_HOST:-10.21.65.3}
+  #DB_PORT=${DB_PORT:-5432}
+  #DB_NAME=${DB_NAME:-jasperserver}
+  ## for 7.5.0 we change the db
+  
   DB_USER=${DB_USER:-jasperserver}
-  DB_PASSWORD=${DB_PASSWORD:-jasperserver}
-  DB_HOST=${DB_HOST:-10.21.65.3}
+  DB_PASSWORD=${DB_PASSWORD:-hUYcN9X5HZ}
+  DB_HOST=${DB_HOST:-postgres}
   DB_PORT=${DB_PORT:-5432}
-  DB_NAME=${DB_NAME:-jasperserver}
+  DB_NAME=${DB_NAME:-jasperserver750}
 
   # Simple default_master.properties. Modify according to
   # JasperReports Server documentation.
