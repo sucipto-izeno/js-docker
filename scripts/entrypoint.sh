@@ -43,6 +43,7 @@ dbUsername=$DB_USER
 dbPassword=$DB_PASSWORD
 dbPort=$DB_PORT
 js.dbName=$DB_NAME
+encrypt=false
 _EOL_
 
   # Execute js-ant targets for installing/configuring
@@ -73,6 +74,7 @@ _EOL_
         -DwebAppName=jasperserver-pro
     fi
   done
+  sed -i 's/%ex%n/%x%n/g' $CATALINA_HOME/webapps/jasperserver-pro/WEB-INF/applicationContext-diagnostic.xml
   config_sso
   
   config_sso_lib
@@ -126,7 +128,7 @@ run_jasperserver() {
 
   # If JRS_HTTPS_ONLY is set, set JasperReports Server to
   # run only in HTTPS.
-  config_ssl
+  #config_ssl
 
   # Apply customization zip if present.
   config_customization
