@@ -21,6 +21,10 @@ gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/WEB-INF/jsp/modules/commonJ
 echo "Downloading from License"
 gsutil cp gs://gke-shared/jasperreport/license/jasperserver.license resources/
 
+echo "Download keystore"
+gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/keystore/keystore.init.properties   resources/
+gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/keystore/.jrsks   resources/
+gsutil cp gs://gke-shared/jasperreport/${JS_VERSION}/keystore/.jrsksp   resources/
 
 echo "Running Docker Build"
 

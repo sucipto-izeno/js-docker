@@ -55,7 +55,9 @@ COPY resources/WEB-INF/lib/*.jar /usr/src/jasperreports-server/WEB-INF/lib/
 COPY resources/WEB-INF/applicationContext-externalAuth-oAuth.xml /usr/src/jasperreports-server/WEB-INF/
 COPY resources/WEB-INF/jsp/modules/commonJSTLScripts.jsp	 /usr/src/jasperreports-server/WEB-INF/jsp/modules/
 COPY resources/jasperserver.license /usr/local/share/jasperreports-pro/license/jasperserver.license 
-
+COPY resources/keystore.init.properties /usr/src/jasperreports-server/buildomatic/
+copy resources/.jrsks /root/
+copy resources/.jrsksp /root/
 # Extract phantomjs, move to /usr/local/share/phantomjs, link to /usr/local/bin.
 # Comment out if phantomjs not required.
 RUN wget \
